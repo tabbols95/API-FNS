@@ -3,7 +3,8 @@ from src.fns.req import FNSResponse
 import re
 
 
-def innfl(surname: str,
+def innfl(API_TOKEN: str,
+          surname: str,
           name: str,
           patronymic: str,
           birth_date: str,
@@ -12,6 +13,8 @@ def innfl(surname: str,
     """Возвращает ИНН физического лица на основании введенных паспортных данных.
 
     Args:
+        API_TOKEN:
+            Токен для подключения к API ФНС.
         surname:
             Фамилия.
         name:
@@ -52,4 +55,4 @@ def innfl(surname: str,
                         bdate=birth_date,
                         doctype=type_document,
                         docno=number_document,
-                        key='API_TOKEN')
+                        key=API_TOKEN)
