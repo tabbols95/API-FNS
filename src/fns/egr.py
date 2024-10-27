@@ -1,8 +1,8 @@
-from src.fns.req import create_request
-import json
+from src.fns.req import get_fns_data
+from src.fns.req import AnswerRequest
 
 
-def egr(value: str):
+def egr(value: str) -> AnswerRequest:
     """Возвращает данные о компании.
 
     Args:
@@ -13,12 +13,9 @@ def egr(value: str):
         list: Информация об искомой компании.
     """
     if not value:
-        return []
+        answer = AnswerRequest(method=egr.__name__)
+        answer.error_flag = True
+        answer.error_message = 'Error: value is None.'
+        return answer
 
-    return create_request(egr, req=value, key='TOKEN')
-
-
-if __name__ == "__main__":
-    response = egr('1032502271548')
-    with open("data.json", "w", encoding="utf-8") as json_file:
-        json.dump(response, json_file, ensure_ascii=False, indent=4)
+    return get_fns_data(egr, req=value, key='API_TOKEN')
