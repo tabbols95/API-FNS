@@ -1,7 +1,18 @@
-import requests
+"""Test egr."""
 
-url = 'https://api.github.com/some/endpoint'
-headers = {'user-agent': 'my-app/0.0.1'}
+# external
+import pytest
 
-r = requests.get(url, headers=headers)
-print(r.headers)
+# local
+from src.fns.egr import egr
+
+
+@pytest.mark.parametrize(
+    ("value",),
+    [
+        ("7736050003",),
+        (None,),
+    ],
+)
+def test_returns_success_response(value: str):
+    assert egr(value)
