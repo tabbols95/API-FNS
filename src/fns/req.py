@@ -1,5 +1,5 @@
 import requests
-import json
+from datetime import datetime as dt
 from typing import Callable, Optional, List
 from dataclasses import dataclass
 
@@ -32,6 +32,9 @@ class AnswerRequest:
     error_message: Optional[str] = None
     """Сообщение об ошибке"""
 
+    runtime: int = None
+    """Время получения ответа в секундах"""
+
     def get_url(self) -> str:
         full_url = self.url + '/' + self.method
         return full_url
@@ -43,7 +46,10 @@ def get_fns_data(func: Callable, **kwargs) -> AnswerRequest:
     url = answer.get_url()
 
     try:
+        start_dt = dt.now()
         response = requests.get(url=url, params=kwargs)
+        end_dt = dt.now()
+        answer.runtime = (end_dt - start_dt).total_seconds()
 
         # Записываем ответ
         answer.status_code = response.status_code
