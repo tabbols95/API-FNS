@@ -38,7 +38,11 @@ def innfl(surname: str,
     """
     pattern = re.compile('\\d{2}.\\d{2}.\\d{4}')
     if not surname or not name or not birth_date or not type_document or not number_document or not re.match(pattern, birth_date):
-        answer = FNSResponse(method=innfl.__name__, error_flag=True, error_message='Error: values incorrect.')
+        answer = FNSResponse(
+            method=innfl.__name__,
+            error_flag=True,
+            error_message='Error: values incorrect.'
+        )
         return answer
 
     return get_fns_data(innfl,
