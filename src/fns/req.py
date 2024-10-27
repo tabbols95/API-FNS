@@ -5,7 +5,7 @@ from dataclasses import dataclass
 
 
 @dataclass
-class AnswerRequest:
+class FNSResponse:
     """Ответ по запросу"""
 
     method: str
@@ -40,9 +40,9 @@ class AnswerRequest:
         return full_url
 
 
-def get_fns_data(func: Callable, **kwargs) -> AnswerRequest:
+def get_fns_data(func: Callable, **kwargs) -> FNSResponse:
 
-    answer = AnswerRequest(method=func.__name__)
+    answer = FNSResponse(method=func.__name__)
     url = answer.get_url()
 
     try:

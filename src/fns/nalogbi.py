@@ -1,8 +1,8 @@
 from src.fns.req import get_fns_data
-from src.fns.req import AnswerRequest
+from src.fns.req import FNSResponse
 
 
-def nalogbi(inn: str) -> AnswerRequest:
+def nalogbi(inn: str) -> FNSResponse:
     """Возвращает данные о компании.
 
     Args:
@@ -13,7 +13,7 @@ def nalogbi(inn: str) -> AnswerRequest:
         list: Информация об искомой компании.
     """
     if not inn:
-        answer = AnswerRequest(method=nalogbi.__name__)
+        answer = FNSResponse(method=nalogbi.__name__)
         answer.error_flag = True
         answer.error_message = 'Error: value is None.'
         return answer

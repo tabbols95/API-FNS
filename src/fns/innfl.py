@@ -1,5 +1,5 @@
 from src.fns.req import get_fns_data
-from src.fns.req import AnswerRequest
+from src.fns.req import FNSResponse
 import re
 
 
@@ -8,7 +8,7 @@ def innfl(surname: str,
           patronymic: str,
           birth_date: str,
           type_document: str,
-          number_document: str) -> AnswerRequest:
+          number_document: str) -> FNSResponse:
     """Возвращает ИНН физического лица на основании введенных паспортных данных.
 
     Args:
@@ -34,13 +34,11 @@ def innfl(surname: str,
             Серия и номер документа (можно вводить как с пробелами, так и без пробелов между серией и номером).
 
     Returns:
-        (AnswerRequest)
+        (FNSResponse)
     """
     pattern = re.compile('\\d{2}.\\d{2}.\\d{4}')
     if not surname or not name or not birth_date or not type_document or not number_document or not re.match(pattern, birth_date):
-        answer = AnswerRequest(method=innfl.__name__)
-        answer.error_flag = True
-        answer.error_message = 'Error: values incorrect.'
+        answer = FNSResponse(method=innfl.__name__, error_flag=True, error_message='Error: values incorrect.')
         return answer
 
     return get_fns_data(innfl,

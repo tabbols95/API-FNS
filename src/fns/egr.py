@@ -1,8 +1,8 @@
 from src.fns.req import get_fns_data
-from src.fns.req import AnswerRequest
+from src.fns.req import FNSResponse
 
 
-def egr(value: str) -> AnswerRequest:
+def egr(value: str) -> FNSResponse:
     """Возвращает данные о компании.
 
     Args:
@@ -13,7 +13,7 @@ def egr(value: str) -> AnswerRequest:
         list: Информация об искомой компании.
     """
     if not value:
-        answer = AnswerRequest(method=egr.__name__)
+        answer = FNSResponse(method=egr.__name__)
         answer.error_flag = True
         answer.error_message = 'Error: value is None.'
         return answer
