@@ -23,7 +23,7 @@ class FNSResponse:
     encoding: str = 'utf-8'
     """Кодировка"""
 
-    result: List[dict] = None
+    result: List[dict, Nonr] = None
     """Ответ от сервиса"""
 
     error_flag: bool = False
