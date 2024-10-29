@@ -23,7 +23,7 @@ class FNSResponse:
     encoding: str = 'utf-8'
     """Кодировка"""
 
-    result: List[dict] = None
+    result: List[dict, None] = None
     """Ответ от сервиса"""
 
     error_flag: bool = False
@@ -32,7 +32,7 @@ class FNSResponse:
     error_message: Optional[str] = None
     """Сообщение об ошибке"""
 
-    runtime: int = None
+    runtime: Optional[int] = None
     """Время получения ответа в секундах"""
 
     def get_url(self) -> str:
