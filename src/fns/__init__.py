@@ -1,12 +1,9 @@
 """API ФНС"""
 
 # local
-from .egr import egr
 from .innfl import innfl
 
 __all__ = (
-    # Данные о компании
-    "egr",
     # ИНН ФЛ по ПД
     "innfl"
 )

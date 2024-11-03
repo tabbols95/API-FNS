@@ -1,15 +1,18 @@
+"""Method innfl."""
+
+# local
 from src.fns.req import get_fns_data
-from src.fns.req import FNSResponse
-import re
+from validators import validator_innfl
 
 
+@validator_innfl
 def innfl(API_TOKEN: str,
           surname: str,
           name: str,
           patronymic: str,
           birth_date: str,
           type_document: str,
-          number_document: str) -> FNSResponse:
+          number_document: str):
     """Возвращает ИНН физического лица на основании введенных паспортных данных.
 
     Args:
@@ -39,14 +42,6 @@ def innfl(API_TOKEN: str,
     Returns:
         (FNSResponse)
     """
-    pattern = re.compile('\\d{2}.\\d{2}.\\d{4}')
-    if not surname or not name or not birth_date or not type_document or not number_document or not re.match(pattern, birth_date):
-        answer = FNSResponse(
-            method=innfl.__name__,
-            error_flag=True,
-            error_message='Error: values incorrect.'
-        )
-        return answer
 
     return get_fns_data(innfl,
                         fam=surname,
